@@ -8,16 +8,19 @@ const Activity = () => {
         fetch("https://www.boredapi.com/api/activity")
         .then( res => res.json())
         .then( json => {
-            const newActivity = JSON.stringify(json.activity)
+            const newActivity = json.activity
             setHistory(prevHistory => [...prevHistory, newActivity]);
             setAct(newActivity);})
     }
-    
+    function clearhistory() {
+        setHistory([])
+    }
     return (
         <div>
        <p>{act}</p>
-       <button onClick={() => handleClick()}>click me</button>
+       <button onClick={() => handleClick()}>I'm Bored...</button>
        <History n={history}/>
+       <button onClick={() => clearhistory()}>clear</button>
         </div>
 )
   
