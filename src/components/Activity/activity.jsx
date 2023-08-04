@@ -8,6 +8,7 @@ import RadioGroup from '@mui/material/RadioGroup';
 import FormControlLabel from '@mui/material/FormControlLabel';
 import FormControl from '@mui/material/FormControl';
 import FormLabel from '@mui/material/FormLabel';
+import Button from '@mui/material/Button';
 
 const Activity = () => {
     const [act, setAct] = useState("What should you do today?")
@@ -68,14 +69,16 @@ const Activity = () => {
     };
     return (
         <div>
-       <p>{act}</p>
-       <button onClick={() => handleClick(active, value, participants)}>I'm Bored...</button>
-       <div>
-       <FormControl>
+        <div class='main-content'>
+       <h1>{act}</h1>
+       <Button variant="contained" onClick={() => handleClick(active, value, participants)}>I'm Bored...</Button>
+       </div>
+       <div className='active-form'>
+       <FormControl >
         <FormLabel id="demo-controlled-radio-buttons-group">Generate an activity based on:</FormLabel>
         <RadioGroup
             aria-labelledby="demo-controlled-radio-buttons-group"
-            name="controlled-radio-buttons-group"
+            name="row-radio-buttons-group"
             value={active}
             onChange={handleMain}
         >
@@ -85,10 +88,10 @@ const Activity = () => {
         </RadioGroup>
         </FormControl>
        </div>
-       <div style={{width:300}}>
+       <div className='two_types'>
+       <div style={{width:300}} className='Slider'>
         <p>No. of Participants</p>
-       <Slider disabled={slidervisible}
-       class = "Slider"
+       <Slider className='slider_component' disabled={slidervisible}
        min={1}
        max={5}
        value={participants}
@@ -97,10 +100,12 @@ const Activity = () => {
        valueLabelDisplay="auto"
        />
        </div>
-       <div>
+       <div className='Radiobuttons'>
+       <p>Type of Activity</p>
        <FormControl disabled={radiovisible}>
-        <FormLabel id="demo-controlled-radio-buttons-group">Type</FormLabel>
         <RadioGroup
+        row
+        style={{width:300}}
             aria-labelledby="demo-controlled-radio-buttons-group"
             name="controlled-radio-buttons-group"
             value={value}
@@ -108,11 +113,20 @@ const Activity = () => {
         >
             <FormControlLabel value="education" control={<Radio />} label="Education" />
             <FormControlLabel value="recreational" control={<Radio />} label="Recreational" />
+            <FormControlLabel value="social" control={<Radio />} label="Social" />
+            <FormControlLabel value="diy" control={<Radio />} label="DIY" />
+            <FormControlLabel value="charity" control={<Radio />} label="Charity" />
+            <FormControlLabel value="cooking" control={<Radio />} label="Cooking" />
+            <FormControlLabel value="music" control={<Radio />} label="Music" />
+            <FormControlLabel value="busywork" control={<Radio />} label="Busywork" />
         </RadioGroup>
         </FormControl>
        </div>
+       </div>
+       <div className='history'>
        <History n={history}/>
-       <button onClick={() => clearhistory()}>clear</button>
+       <Button variant="outlined" onClick={() => clearhistory()}>clear</Button>
+       </div>
         </div>
 )
   
